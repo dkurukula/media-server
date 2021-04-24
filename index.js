@@ -2,12 +2,16 @@ const express = require("express");
 const app = express();
 const fs = require("fs");
 
+const PORT=8029
+const MOVIE_FILE='/Users/dimuth/Movies/The.Falcon.and.the.Winter.Soldier.S01E05.WEBRip.x264-ION10/The.Falcon.and.the.Winter.Soldier.S01E05.WEBRip.x264-ION10.mp4'
+
+
 app.get("/", function (req, res) {
   res.sendFile(__dirname + "/index.html");
 });
 
-app.listen(8000, function () {
-  console.log("Listening on port 8000!");
+app.listen(PORT, function () {
+  console.log(`Listening on port ${PORT}!`);
 });
 
 
@@ -20,8 +24,8 @@ app.get("/video", function (req, res) {
   }
 
   // get video stats (about 61MB)
-  const videoPath = "./video/hp6.mp4";
-  const videoSize = fs.statSync("./video/hp6.mp4").size;
+  const videoPath = MOVIE_FILE;
+  const videoSize = fs.statSync(MOVIE_FILE).size;
 
   // Parse Range
   // Example: "bytes=32324-"
